@@ -315,12 +315,18 @@ export class AppComponent {
   ];
   
 
+  generarUUID(): string {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
   registrarActividad() {
-    const { codigo, nombre, area, descripcion } = this.nuevaActividad;
+    const { nombre, area, descripcion } = this.nuevaActividad;
 
     // Validar que todos los campos estén llenos
     if (
-      !codigo.trim() ||
       !nombre.trim() ||
       !area.trim() ||
       !descripcion.trim()
@@ -330,13 +336,9 @@ export class AppComponent {
     }
 
     // Verificar que el código no exista ya
-    const codigoExiste = this.actividades.some((act) => act.codigo === codigo);
-    if (codigoExiste) {
-      alert('El código de actividad ya existe. Debe ser único.');
-      return;
-    }
 
     // Guardar la actividad
+    this.nuevaActividad.codigo = this.generarUUID(); 
     this.actividades.push({ ...this.nuevaActividad });
     alert('Actividad registrada correctamente.');
     console.log(this.actividades);
