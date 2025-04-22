@@ -539,4 +539,17 @@ rechazarActividadConRazon(actividad: any) {
     this.usuario = '';
     this.contrasena = '';
   }
+
+  eliminarActividad(actividad: any) {
+    const confirmacion = confirm(`¿Estás seguro de eliminar la actividad "${actividad.nombre}"?`);
+  
+    if (confirmacion) {
+      const index = this.actividades.indexOf(actividad);
+      if (index > -1) {
+        this.actividades.splice(index, 1);
+        alert('Actividad eliminada exitosamente.');
+      }
+    }
+  }
+  
 }

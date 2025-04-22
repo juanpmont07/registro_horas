@@ -149,7 +149,8 @@
     <ul>
       <li *ngFor="let act of actividades">
         <strong>{{ act.codigo }}</strong>: {{ act.nombre }}<br>
-        <em>{{ act.area }} - {{ act.descripcion }}</em>
+        <em>{{ act.area }} - {{ act.descripcion }}</em><br>
+        <button (click)="eliminarActividad(act)">Eliminar</button>
       </li>
     </ul>
   </div>
